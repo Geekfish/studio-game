@@ -25,18 +25,18 @@ describe Game::Player do
     end
 
     before do
-      @initial_health = 100
+      @initial_health = 120
       @player = build_player(@initial_health)
     end
 
     it 'reduces health when blammed' do
       @player.blam
-      expect(@player.health).to eq(90)
+      expect(@player.health).to eq(@initial_health - 10)
     end
 
     it 'replenishes health when w00ted' do
       @player.w00t
-      expect(@player.health).to eq(115)
+      expect(@player.health).to eq(@initial_health + 15)
     end
   end
 end
