@@ -2,6 +2,10 @@ require 'game'
 require 'game/player'
 
 describe Game::Player do
+  before do
+    $stdout = StringIO.new
+  end
+
   context 'with no player initialized' do
     it 'sets player name and default health' do
       player = Game::Player.new('bob')
