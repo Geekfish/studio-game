@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'game'
-require_relative 'game/player'
+require_relative 'lib/game'
+require_relative 'lib/game/player'
 
 Player = Game::Player
 
