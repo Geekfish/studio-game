@@ -2,6 +2,7 @@
 
 require_relative 'lib/game'
 require_relative 'lib/game/player'
+require_relative 'lib/game/die'
 
 Player = Game::Player
 

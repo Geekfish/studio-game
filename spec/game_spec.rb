@@ -1,8 +1,13 @@
 require 'game'
+require 'game/die'
 
 describe Game do
   before do
     @game = Game.new('Knuckleheads')
+  end
+
+  def fake_roll(result)
+    allow_any_instance_of(Game::Die).to receive(:roll) { result }
   end
 
   context 'when it is created' do
@@ -20,19 +25,19 @@ describe Game do
     end
 
     it 'blams player if the roll is low' do
-      allow(@game).to receive(:roll_die) { 5 }
+      fake_roll(1)
       @game.play
       expect(@player.health).to eq(@initial_health - 10)
     end
 
     it 'w00ts player if the roll is high' do
-      allow(@game).to receive(:roll_die) { 17 }
+      fake_roll(5)
       @game.play
       expect(@player.health).to eq(@initial_health + 15)
     end
 
     it 'does nothing when the rolls is medium' do
-      allow(@game).to receive(:roll_die) { 10 }
+      fake_roll(3)
       @game.play
       expect(@player.health).to eq(@initial_health)
     end
