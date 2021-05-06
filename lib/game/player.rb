@@ -30,6 +30,8 @@ class Game::Player
     update_health(-damage)
   end
 
+  def strong? = @health >= 100
+
   private
 
   def update_health(delta) = @health += delta

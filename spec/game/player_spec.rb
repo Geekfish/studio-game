@@ -6,6 +6,10 @@ describe Game::Player do
     $stdout = StringIO.new
   end
 
+  def build_player(health)
+    Game::Player.new('bob', health)
+  end
+
   context 'with no player initialized' do
     it 'sets player name and default health' do
       player = Game::Player.new('bob')
@@ -20,10 +24,6 @@ describe Game::Player do
     end
   end
   context 'with player already initialized' do
-    def build_player(health)
-      Game::Player.new('bob', health)
-    end
-
     before do
       @initial_health = 120
       @player = build_player(@initial_health)
@@ -37,6 +37,26 @@ describe Game::Player do
     it 'replenishes health when w00ted' do
       @player.w00t
       expect(@player.health).to eq(@initial_health + 15)
+    end
+  end
+
+  context 'with health of at least 100' do
+    before do
+      @player = build_player(120)
+    end
+
+    it 'is strong' do
+      expect(@player).to be_strong
+    end
+  end
+
+  context 'with health of under 100' do
+    before do
+      @player = build_player(45)
+    end
+
+    it 'is NOT strong' do
+      expect(@player).not_to be_strong
     end
   end
 end
