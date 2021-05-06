@@ -2,10 +2,6 @@ require 'game'
 require 'game/player'
 
 describe Game::Player do
-  before do
-    $stdout = StringIO.new
-  end
-
   def build_player(health)
     Game::Player.new('bob', health)
   end
