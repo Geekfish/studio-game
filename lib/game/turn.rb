@@ -11,6 +11,6 @@ module Turn
     else
       puts "#{player.name} was skipped."
     end
-    puts player
+    puts player.to_s
   end
 end
