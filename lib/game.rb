@@ -39,7 +39,7 @@ class Game
 
   def print_highscores
     print_heading("#{@title} High Scores:")
-    @players.sort_by(&:score).take(3).each(&method(:print_score))
+    @players.sort.take(3).each(&method(:print_score))
   end
 
   private
