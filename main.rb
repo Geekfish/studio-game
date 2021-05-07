@@ -2,9 +2,6 @@
 
 require_relative 'lib/game'
 require_relative 'lib/game/player'
-require_relative 'lib/game/die'
-
-Player = Game::Player
 
 if __FILE__ == $PROGRAM_NAME
   players = [

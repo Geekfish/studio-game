@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Game::Player
+class Player
   attr_reader :name, :health
 
   def initialize(name, health = 100)

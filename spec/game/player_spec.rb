@@ -1,20 +1,20 @@
 require 'game'
 require 'game/player'
 
-describe Game::Player do
+describe Player do
   def build_player(health)
-    Game::Player.new('bob', health)
+    Player.new('bob', health)
   end
 
   context 'with no player initialized' do
     it 'sets player name and default health' do
-      player = Game::Player.new('bob')
+      player = Player.new('bob')
       expect(player.name).to eq('Bob')
       expect(player.health).to eq(100)
     end
 
     it 'sets player name and specified health' do
-      player = Game::Player.new('bob', 23)
+      player = Player.new('bob', 23)
       expect(player.name).to eq('Bob')
       expect(player.health).to eq(23)
     end

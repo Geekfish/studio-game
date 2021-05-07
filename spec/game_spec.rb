@@ -1,5 +1,6 @@
 require 'game'
 require 'game/die'
+require 'game/turn'
 
 describe Game do
   before do
@@ -7,7 +8,7 @@ describe Game do
   end
 
   def fake_roll(result)
-    allow_any_instance_of(Game::Die).to receive(:roll) { result }
+    allow_any_instance_of(Die).to receive(:roll) { result }
   end
 
   context 'when it is created' do
@@ -20,7 +21,7 @@ describe Game do
   context 'being played with one player' do
     before do
       @initial_health = 83
-      @player = Game::Player.new('bobby', @initial_health)
+      @player = Player.new('bobby', @initial_health)
       @game.add_player(@player)
     end
 
