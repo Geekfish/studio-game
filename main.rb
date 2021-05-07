@@ -13,5 +13,5 @@ if __FILE__ == $PROGRAM_NAME
 
   game = Game.new('Knuckleheads', players)
   game.add_player(Player.new('simba', 82))
-  game.play
+  game.play(3)
 end
