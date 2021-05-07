@@ -50,7 +50,6 @@ class Game
   end
 
   def print_score(player)
-    padding = HIGH_SCORE_WIDTH - "#{player.name}#{player.score}".length
-    puts "#{player.name}#{'.' * padding}#{player.score}"
+    puts "#{player.name.ljust(HIGH_SCORE_WIDTH, '.')}#{player.score}"
   end
 end
