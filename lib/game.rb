@@ -31,10 +31,10 @@ class Game
     strong, wimpy = @players.partition(&:strong?)
 
     print_heading('Strong players:', '-')
-    strong.each { |player| puts "#{player.name} (#{player.health})" }
+    strong.each(&method(:print_player_stats))
 
     print_heading('Wimpy players:', '-')
-    wimpy.each { |player| puts "#{player.name} (#{player.health})" }
+    wimpy.each(&method(:print_player_stats))
   end
 
   def print_highscores
@@ -47,6 +47,10 @@ class Game
   def print_heading(text, underline = '=')
     puts "\n#{text}"
     puts underline * text.length
+  end
+
+  def print_player_stats(player)
+    puts "#{player.name} (#{player.health}"
   end
 
   def print_score(player)
