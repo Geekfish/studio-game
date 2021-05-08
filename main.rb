@@ -29,5 +29,5 @@ if __FILE__ == $PROGRAM_NAME
 
   game = Game.new('Knuckleheads', players)
   game.add_player(Player.new('simba', 82))
-  game.play(3)
+  game.play(10) { game.total_points >= 2000 }
 end

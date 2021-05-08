@@ -15,12 +15,13 @@ class Game
 
   def add_player(player) = @players << player
 
-  def play(rounds)
+  def play(rounds, &end_condition)
     print_treasures
     print_heading("There are #{@players.length} players in the game.")
     1.upto(rounds) do |round|
       print_heading("Round #{round} - FIGHT!")
       @players.each { |player| Turn.take(player) }
+      break if block_given? && end_condition.call
     end
 
     print_stats
