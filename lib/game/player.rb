@@ -29,6 +29,12 @@ class Player
 
   def points = @found_treasures.values.sum
 
+  def each_found_treasure
+    @found_treasures.each do |name, points|
+      yield TreasureTrove::Treasure.new(name, points)
+    end
+  end
+
   def store_treasure(treasure)
     @found_treasures[treasure.name] += treasure.points
   end

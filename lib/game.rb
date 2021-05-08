@@ -65,8 +65,10 @@ class Game
   def print_player_treasures
     print_heading('Player treasure points')
     @players.each do |player|
-      puts "#{player.name}'s point totals:"
-      puts "#{player.points} total points"
+      print_heading("#{player.name}'s point totals:", '-')
+      player.each_found_treasure do |treasure|
+        puts "#{treasure.points} total #{treasure.name} points"
+      end
     end
     puts "#{total_points} total points from treasures found"
   end
