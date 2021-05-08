@@ -19,15 +19,35 @@ def play_with_blocks
   yield_block_or_function(my_proc)
 end
 
-if __FILE__ == $PROGRAM_NAME
-  players = [
-    Player.new('larry', 60),
-    Player.new('curly', 125),
-    Player.new('moe'),
-    Player.new('shemp', 90)
-  ]
-
-  game = Game.new('Knuckleheads', players)
-  game.add_player(Player.new('simba', 82))
-  game.play(10) { game.total_points >= 2000 }
+def load_players(filename)
+  File.readlines(filename).map { |line| Player.from_csv(line) }
 end
+
+def read_input # rubocop:disable Metrics/MethodLength
+  puts "How many rounds? (or type 'quit' to exit)"
+  input = gets.chomp.downcase
+  case input
+  when /^\d+$/
+    input.to_i
+  when 'exit', 'quit', 'q'
+    :exit
+  else
+    puts "Please enter a number or type 'quit'"
+    read_input
+  end
+end
+
+def run
+  loop do
+    players = load_players(ARGV.shift || 'default_players.csv')
+
+    input = read_input
+    break if input == :exit
+
+    num_rounds = input
+    game = Game.new('Knuckleheads', players)
+    game.play(num_rounds) { game.total_points >= 2000 }
+  end
+end
+
+run if __FILE__ == $PROGRAM_NAME

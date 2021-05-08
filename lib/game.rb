@@ -26,6 +26,15 @@ class Game
 
     print_stats
     print_highscores
+    save_rankings
+  end
+
+  def save_rankings(filename = 'rankings.csv')
+    File.open(filename, 'w') do |file|
+      @players.sort.each do |player|
+        file.puts player.to_csv
+      end
+    end
   end
 
   def total_points = @players.reduce(0) { |sum, p| sum + p.points }
