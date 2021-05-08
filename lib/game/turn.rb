@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'die'
 
 module Turn
@@ -11,6 +12,7 @@ module Turn
     else
       puts "#{player.name} was skipped."
     end
-    puts player.to_s
+    puts player.look_for_treasure
+    puts "#{player.name}'s treasures: #{player.found_treasures}\n"
   end
 end

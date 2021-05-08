@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
 require 'game'
 require 'game/player'
+require 'game/treasure_trove'
+
+Treasure = TreasureTrove::Treasure
 
 describe Player do
   def build_player(health)
@@ -33,6 +38,22 @@ describe Player do
     it 'replenishes health when w00ted' do
       @player.w00t
       expect(@player.health).to eq(@initial_health + 15)
+    end
+
+    it 'computes points as the sum of all treasure points' do
+      expect(@player.points).to eq(0)
+
+      @player.store_treasure(Treasure.new(:hammer, 50))
+
+      expect(@player.points).to eq(50)
+
+      @player.store_treasure(Treasure.new(:crowbar, 400))
+
+      expect(@player.points).to eq(450)
+
+      @player.store_treasure(Treasure.new(:hammer, 50))
+
+      expect(@player.points).to eq(500)
     end
   end
 

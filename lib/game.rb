@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'game/turn'
+require_relative 'game/treasure_trove'
 
 class Game
   attr_reader :title
@@ -15,13 +16,15 @@ class Game
   def add_player(player) = @players << player
 
   def play(rounds)
-    puts "There are #{@players.length} players in the game."
+    print_treasures
+    print_heading("There are #{@players.length} players in the game.")
     1.upto(rounds) do |round|
       print_heading("Round #{round} - FIGHT!")
       @players.each { |player| Turn.take(player) }
     end
 
     print_stats
+    print_player_treasures
     print_highscores
   end
 
@@ -49,8 +52,23 @@ class Game
     puts underline * text.length
   end
 
+  def print_treasures
+    print_heading("There are #{TreasureTrove::TREASURES.length} treasures to be found:")
+    TreasureTrove::TREASURES.each do |treasure|
+      puts "A #{treasure.name} is worth #{treasure.points} points"
+    end
+  end
+
+  def print_player_treasures
+    print_heading('Player treasure points')
+    @players.each do |player|
+      puts "#{player.name}'s point totals:"
+      puts "#{player.points} total points"
+    end
+  end
+
   def print_player_stats(player)
-    puts "#{player.name} (#{player.health}"
+    puts "#{player.name} (#{player.health})"
   end
 
   def print_score(player)
