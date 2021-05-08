@@ -39,6 +39,13 @@ describe Player do
 
       expect(player.to_s).to eq("I'm Bob with health = 150, points = 100, and score = 250.")
     end
+
+    it 'can be created from a CSV string' do
+      player = Player.from_csv('larry,150')
+
+      expect(player.name).to eq('Larry')
+      expect(player.health).to eq(150)
+    end
   end
   context 'with player already initialized' do
     before do
