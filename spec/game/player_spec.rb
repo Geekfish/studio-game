@@ -23,6 +23,22 @@ describe Player do
       expect(player.name).to eq('Bob')
       expect(player.health).to eq(23)
     end
+
+    it 'computes a score as the sum of its health and points' do
+      player = Player.new('bob', 100)
+      player.store_treasure(Treasure.new(:hammer, 50))
+      player.store_treasure(Treasure.new(:hammer, 50))
+
+      expect(player.score).to eq(200)
+    end
+
+    it 'has a string representation' do
+      player = Player.new('bob', 150)
+      player.store_treasure(Treasure.new(:hammer, 50))
+      player.store_treasure(Treasure.new(:hammer, 50))
+
+      expect(player.to_s).to eq("I'm Bob with health = 150, points = 100, and score = 250.")
+    end
   end
   context 'with player already initialized' do
     before do

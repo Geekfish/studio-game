@@ -16,6 +16,22 @@ describe Game do
       game = Game.new('Knuckleheads')
       expect(game.title).to eq('Knuckleheads')
     end
+
+    it 'computes total points as the sum of all player points' do
+      game = Game.new('Knuckleheads')
+
+      player1 = Player.new('moe')
+      player2 = Player.new('larry')
+
+      game.add_player(player1)
+      game.add_player(player2)
+
+      player1.store_treasure(Treasure.new(:hammer, 50))
+      player1.store_treasure(Treasure.new(:hammer, 50))
+      player2.store_treasure(Treasure.new(:crowbar, 400))
+
+      expect(game.total_points).to eq(500)
+    end
   end
 
   context 'being played with one player' do
@@ -42,6 +58,11 @@ describe Game do
       fake_roll(3)
       @game.play(@rounds)
       expect(@player.health).to eq(@initial_health)
+    end
+
+    it "assigns a treasure for points during the player's turn" do
+      @game.play(1)
+      expect(@player.points).not_to be_zero
     end
   end
 end

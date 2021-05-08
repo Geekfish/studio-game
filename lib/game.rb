@@ -24,9 +24,10 @@ class Game
     end
 
     print_stats
-    print_player_treasures
     print_highscores
   end
+
+  def total_points = @players.reduce(0) { |sum, p| sum + p.points }
 
   def print_stats
     print_heading("#{@title} Statistics:")
@@ -38,6 +39,8 @@ class Game
 
     print_heading('Wimpy players:', '-')
     wimpy.each(&method(:print_player_stats))
+
+    print_player_treasures
   end
 
   def print_highscores
@@ -65,6 +68,7 @@ class Game
       puts "#{player.name}'s point totals:"
       puts "#{player.points} total points"
     end
+    puts "#{total_points} total points from treasures found"
   end
 
   def print_player_stats(player)
