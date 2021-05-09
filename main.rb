@@ -2,6 +2,8 @@
 
 require_relative 'lib/game'
 require_relative 'lib/game/player'
+require_relative 'lib/game/clumsy_player'
+require_relative 'lib/game/berserk_player'
 
 def yield_block_or_function(proc_or_lambda = nil, &block)
   # Experiment
@@ -19,8 +21,17 @@ def play_with_blocks
   yield_block_or_function(my_proc)
 end
 
+PLAYER_CLASSES = {
+  'regular' => Player,
+  'clumsy' => ClumsyPlayer,
+  'berserk' => BerserkPlayer
+}.freeze
+
 def load_players(filename)
-  File.readlines(filename).map { |line| Player.from_csv(line) }
+  File.readlines(filename).map do |line|
+    type, *args = line.split(',')
+    PLAYER_CLASSES[type].from_csv(*args)
+  end
 end
 
 def read_input # rubocop:disable Metrics/MethodLength
@@ -46,7 +57,7 @@ def run
 
     num_rounds = input
     game = Game.new('Knuckleheads', players)
-    game.play(num_rounds) { game.total_points >= 2000 }
+    game.play(num_rounds) { game.total_points >= 10_000 }
   end
 end
 

@@ -15,8 +15,8 @@ class Player
     "I'm #{@name} with health = #{@health}, points = #{points}, and score = #{score}."
   end
 
-  def self.from_csv(line)
-    name, health = line.split(',')
+  def self.from_csv(*args)
+    name, health = args
     new(name, Integer(health))
   end
 
@@ -42,13 +42,13 @@ class Player
     end
   end
 
-  def store_treasure(treasure)
+  def found_treasure(treasure)
     @found_treasures[treasure.name] += treasure.points
   end
 
   def look_for_treasure
     treasure = TreasureTrove.random
-    store_treasure(treasure)
+    found_treasure(treasure)
     puts "#{@name} found a #{treasure.name} worth #{treasure.points}."
   end
 

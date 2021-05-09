@@ -1,4 +1,5 @@
-larry, 60
-curly, 125
-moe, 100
-shemp, 90
+regular, larry, 60
+clumsy, curly, 125
+regular, moe, 100
+regular, shemp, 90
+berserk, berty, 50

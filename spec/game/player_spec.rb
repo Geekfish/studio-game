@@ -26,22 +26,22 @@ describe Player do
 
     it 'computes a score as the sum of its health and points' do
       player = Player.new('bob', 100)
-      player.store_treasure(Treasure.new(:hammer, 50))
-      player.store_treasure(Treasure.new(:hammer, 50))
+      player.found_treasure(Treasure.new(:hammer, 50))
+      player.found_treasure(Treasure.new(:hammer, 50))
 
       expect(player.score).to eq(200)
     end
 
     it 'has a string representation' do
       player = Player.new('bob', 150)
-      player.store_treasure(Treasure.new(:hammer, 50))
-      player.store_treasure(Treasure.new(:hammer, 50))
+      player.found_treasure(Treasure.new(:hammer, 50))
+      player.found_treasure(Treasure.new(:hammer, 50))
 
       expect(player.to_s).to eq("I'm Bob with health = 150, points = 100, and score = 250.")
     end
 
     it 'can be created from a CSV string' do
-      player = Player.from_csv('larry,150')
+      player = Player.from_csv('larry', '150')
 
       expect(player.name).to eq('Larry')
       expect(player.health).to eq(150)
@@ -66,28 +66,28 @@ describe Player do
     it 'computes points as the sum of all treasure points' do
       expect(@player.points).to eq(0)
 
-      @player.store_treasure(Treasure.new(:hammer, 50))
+      @player.found_treasure(Treasure.new(:hammer, 50))
 
       expect(@player.points).to eq(50)
 
-      @player.store_treasure(Treasure.new(:crowbar, 400))
+      @player.found_treasure(Treasure.new(:crowbar, 400))
 
       expect(@player.points).to eq(450)
 
-      @player.store_treasure(Treasure.new(:hammer, 50))
+      @player.found_treasure(Treasure.new(:hammer, 50))
 
       expect(@player.points).to eq(500)
     end
 
     it 'yields each found treasure and its total points' do
-      @player.store_treasure(Treasure.new(:skillet, 100))
-      @player.store_treasure(Treasure.new(:skillet, 100))
-      @player.store_treasure(Treasure.new(:hammer, 50))
-      @player.store_treasure(Treasure.new(:bottle, 5))
-      @player.store_treasure(Treasure.new(:bottle, 5))
-      @player.store_treasure(Treasure.new(:bottle, 5))
-      @player.store_treasure(Treasure.new(:bottle, 5))
-      @player.store_treasure(Treasure.new(:bottle, 5))
+      @player.found_treasure(Treasure.new(:skillet, 100))
+      @player.found_treasure(Treasure.new(:skillet, 100))
+      @player.found_treasure(Treasure.new(:hammer, 50))
+      @player.found_treasure(Treasure.new(:bottle, 5))
+      @player.found_treasure(Treasure.new(:bottle, 5))
+      @player.found_treasure(Treasure.new(:bottle, 5))
+      @player.found_treasure(Treasure.new(:bottle, 5))
+      @player.found_treasure(Treasure.new(:bottle, 5))
 
       yielded = []
       @player.each_found_treasure do |treasure|
