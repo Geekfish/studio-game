@@ -50,7 +50,7 @@ end
 
 def run
   loop do
-    players = load_players(ARGV.shift || 'default_players.csv')
+    players = load_players(ARGV.shift || 'bin/default_players.csv')
 
     input = read_input
     break if input == :exit
