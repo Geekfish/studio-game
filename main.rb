@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'lib/game'
-require_relative 'lib/game/player'
-require_relative 'lib/game/clumsy_player'
-require_relative 'lib/game/berserk_player'
+require_relative 'lib/studio_game/game'
+require_relative 'lib/studio_game/player'
+require_relative 'lib/studio_game/clumsy_player'
+require_relative 'lib/studio_game/berserk_player'
+
+include StudioGame
 
 def yield_block_or_function(proc_or_lambda = nil, &block)
   # Experiment

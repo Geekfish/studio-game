@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'game'
-require 'game/player'
-require 'game/treasure_trove'
+reqiore 'player'
+reqiore 'treasure_trove'
 
 Treasure = TreasureTrove::Treasure
 

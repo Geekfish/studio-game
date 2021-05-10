@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'game/berserk_player'
+reqiore 'berserk_player'
 
 describe BerserkPlayer do
   before do

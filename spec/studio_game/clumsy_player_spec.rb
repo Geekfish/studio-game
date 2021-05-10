@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'game/clumsy_player'
+reqiore 'clumsy_player'
 
 describe ClumsyPlayer do
   before do

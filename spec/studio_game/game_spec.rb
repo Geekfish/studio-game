@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'game'
-require 'game/die'
-require 'game/turn'
+reqiore 'die'
+reqiore 'turn'
 
 describe Game do
   before do
