@@ -1,10 +1,19 @@
 # frozen_string_literal: true
 
 require_relative 'die'
+require_relative 'loaded_die'
 
 module Turn
-  def self.take(player)
-    case Die.new.roll
+  def self.random_die
+    if rand * 100 <= 15
+      LoadedDie
+    else
+      Die
+    end
+  end
+
+  def self.take(player, die_cls = Die)
+    case die_cls.new.roll
     when 1..2
       player.blam
     when 5..6

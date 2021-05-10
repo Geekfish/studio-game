@@ -3,6 +3,8 @@
 require_relative 'player'
 
 class BerserkPlayer < Player
+  include Playable
+
   def initialize(*args)
     super(*args)
     @w00t_count = 0
