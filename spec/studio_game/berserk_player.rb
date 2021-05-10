@@ -1,29 +1,31 @@
 # frozen_string_literal: true
 
-reqiore 'berserk_player'
+require 'studio_game/berserk_player'
 
-describe BerserkPlayer do
-  before do
-    @initial_health = 50
-    @player = BerserkPlayer.new('berserker', @initial_health)
-  end
+module StudioGame
+  describe BerserkPlayer do
+    before do
+      @initial_health = 50
+      @player = BerserkPlayer.new('berserker', @initial_health)
+    end
 
-  it 'does not go berserk when w00ted up to 5 times' do
-    1.upto(5) { @player.w00t }
+    it 'does not go berserk when w00ted up to 5 times' do
+      1.upto(5) { @player.w00t }
 
-    expect(@player).not_to.be_berserk
-  end
+      expect(@player).not_to.be_berserk
+    end
 
-  it 'goes berserk when w00ted more than 5 times' do
-    1.upto(6) { @player.w00t }
+    it 'goes berserk when w00ted more than 5 times' do
+      1.upto(6) { @player.w00t }
 
-    expect(@player).to.be_berserk
-  end
+      expect(@player).to.be_berserk
+    end
 
-  it "gets w00ted instead of blammed when it's gone berserk" do
-    1.upto(6) { @player.w00t }
-    1.upto(2) { @player.blam }
+    it "gets w00ted instead of blammed when it's gone berserk" do
+      1.upto(6) { @player.w00t }
+      1.upto(2) { @player.blam }
 
-    expect(@player.health).to eq(@initial_health + (8 * 15))
+      expect(@player.health).to eq(@initial_health + (8 * 15))
+    end
   end
 end
