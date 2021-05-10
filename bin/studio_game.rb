@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'lib/studio_game/runner'
+require_relative '../lib/studio_game/runner'
 
 StudioGame::Runner.run if __FILE__ == $PROGRAM_NAME
